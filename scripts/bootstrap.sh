@@ -130,7 +130,7 @@ az keyvault secret set --vault-name $TF_RANDOM_NAME \
                 --value $(echo $SUBSCRIPTION | jq -r '.[].tenantId')
 az keyvault secret set --vault-name $TF_RANDOM_NAME \
                 --name tf-backend-file \
-                --value $(cat backend.hcl)
+                --value "$(cat backend.hcl)"
 
 echo "Removing key vault access policy for $(echo $ADMIN_USER | jq -r .userPrincipalName)"
 az keyvault delete-policy --name $TF_RANDOM_NAME \
